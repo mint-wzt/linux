@@ -1,0 +1,21 @@
+#!/bin/bash
+#there are two files!
+
+echo "enter the start dir:"
+read dir1_name
+echo "enter the final dir:"
+read dir2_name
+if [ -d $dir1_name ]
+then 
+        cp -r $dir1_name tem_p
+        find tem_p -type f -exec rm -rf {} \;
+        if [ -d $dir2_name ]
+        then cp -r tem_p/. $dir2_name
+        else 
+        echo $dir2_name "don't exist ,then create it !"
+        cp -r tem_p $dir2_name
+        fi
+        rm -rf tem_p
+        echo "operation end !"
+else echo "error:"$dir1_name" don't exist !"
+fi
